@@ -1,4 +1,6 @@
 from array import array
+import numpy as np
+
 
 # Creating an Array
 arr1 = array('i', [1, 2, 3, 4, 5, 6])
@@ -111,7 +113,56 @@ print(type(l))
 
 
 # creating 2D array
-import numpy as np
 tdArray = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11,  12]])
 print(tdArray)
 
+
+# 2D array insertion
+colstdarray = np.insert(tdArray, 0, [[1, 2, 3]], axis=1)
+print(colstdarray)
+
+rowstdarray = np.insert(tdArray, 1, [[1, 2, 3]], axis=1)
+print(rowstdarray)
+
+
+# 2D array access
+def accessElements(arr, rowIndex, colIndex):
+    if rowIndex >= len(arr) and colIndex >= len(arr[0]):
+        print("No element at this index")
+    else:
+        print(arr[rowIndex][colIndex])
+
+
+accessElements(tdArray, 1, 2)
+
+
+# 2D array traversal
+def traverse2Darray(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr[0])):
+            print(arr[i][j])
+
+
+traverse2Darray(tdArray)
+
+
+# 2D array search
+def search2Darray(arr, value):
+    for i in range(len(arr)):
+        for j in range(len(arr[0])):
+            if arr[i][j] == value:
+                print("The value is located at index: " + str(i) + "," + str(j))
+                return True
+    print("Element not found.")
+    return False
+
+
+search2Darray(tdArray, 7)
+
+
+# 2D array deletion
+row_deltdArray = np.delete(tdArray, 0, axis=0)  # deleting first row
+print(row_deltdArray)
+
+col_deltdArray = np.delete(tdArray, 1, axis=1)  # deleting first column
+print(col_deltdArray)
