@@ -1,5 +1,5 @@
 """
-STEPS:
+ALGORITHM: CREATION OF SINGLY LINKED LISTS
 1. Create head and tail, initialize with null
 2. Create a blank node and assign a value to it and reference to null
 3. Link head and tail with node
