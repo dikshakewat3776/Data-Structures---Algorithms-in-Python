@@ -53,8 +53,8 @@ class CircularSinglyLinkedLists:
                 return
             elif location == 1:
                 newNode.next = self.tail.next
-                self.tail = newNode
                 self.tail.next = newNode
+                self.tail = newNode
                 print("Node inserted at the end of CSLL.")
                 return
             else:

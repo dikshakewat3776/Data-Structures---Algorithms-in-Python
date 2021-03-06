@@ -42,21 +42,24 @@ class CircularSinglyLinkedLists:
         node.next = node
         self.head = node
         self.tail = node
+        return
 
     def insert_node(self, value, location):
-        newNode = Node(value)
         if self.head is None:
             print("No nodes in CSLL.")
             return
         else:
+            newNode = Node(value)
             if location == 0:
                 newNode.next = self.head
                 self.head = newNode
                 self.tail.next = newNode
+                return
             elif location == 1:
                 newNode.next = self.tail.next
-                self.tail = newNode
                 self.tail.next = newNode
+                self.tail = newNode
+                return
             else:
                 tempNode = self.head
                 index = 0
@@ -66,6 +69,7 @@ class CircularSinglyLinkedLists:
                 nextNode = tempNode.next
                 tempNode.next = newNode
                 newNode.next = nextNode
+                return
 
     def traverse_nodes(self):
         if self.head is None:
@@ -107,6 +111,8 @@ class CircularSinglyLinkedLists:
                 else:
                     self.head = self.head.next
                     self.tail.next = self.head
+                print("Node deleted at the beginning of CSLL.")
+                return
             elif location == 1:
                 if self.head == self.tail:
                     self.head.next = None
@@ -120,6 +126,7 @@ class CircularSinglyLinkedLists:
                         node = node.next
                     node.next = self.head
                     self.tail = node
+                print("Node deleted at the end of CSLL.")
             else:
                 tempNode = self.head
                 index = 0
@@ -128,8 +135,8 @@ class CircularSinglyLinkedLists:
                     index += 1
                 nextNode = tempNode.next
                 tempNode.next = nextNode.next
-        print("Node deleted")
-        return
+                print("Node deleted in CSLL at location " + str(location))
+                return
 
     def delete_entire_csll(self):
         if self.head is None:
@@ -142,14 +149,15 @@ class CircularSinglyLinkedLists:
 
 CSLL = CircularSinglyLinkedLists()
 CSLL.create_CSLL(1)
-CSLL.insert_node(value=1, location=0)
 CSLL.insert_node(value=2, location=0)
 CSLL.insert_node(value=3, location=0)
-CSLL.insert_node(value=4, location=1)
-CSLL.insert_node(value=5, location=2)
-CSLL.insert_node(value=6, location=3)
-CSLL.insert_node(value=7, location=1)
-print([node.value for node in CSLL])
+CSLL.insert_node(value=4, location=0)
+CSLL.insert_node(value=5, location=0)
+CSLL.insert_node(value=6, location=1)
+CSLL.insert_node(value=22, location=2)
+CSLL.insert_node(value=33, location=3)
+print("CSLL created: " + str([node.value for node in CSLL]))
+
 
 CSLL.delete_node(location=0)
 print([node.value for node in CSLL])
@@ -163,4 +171,20 @@ print([node.value for node in CSLL])
 
 CSLL.delete_entire_csll()
 print([node.value for node in CSLL])
+
+
+"""
+OUTPUT:
+CSLL created: [5, 4, 22, 33, 3, 2, 1, 6]
+Node deleted at the beginning of CSLL.
+[4, 22, 33, 3, 2, 1, 6]
+Node deleted at the end of CSLL.
+[4, 22, 33, 3, 2, 1]
+Node deleted in CSLL at location 2
+[4, 22, 3, 2, 1]
+Node deleted in CSLL at location 3
+[4, 22, 3, 1]
+Entire SLL deleted with head as: None and tail as: None
+[]
+"""
 
